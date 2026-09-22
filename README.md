@@ -1,3 +1,9 @@
+## Live Demo
+
+[Open AI City Intelligence App](https://ai-cityintelligence-ckjymbdhscgfcxqhbdebug.streamlit.app/)
+
+
+
 # AI-City_Intelligence
 # AI City Intelligence Platform
 
