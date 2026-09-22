@@ -1,3 +1,4 @@
+# AI-City_Intelligence
 # AI City Intelligence Platform
 
 A local, full-stack city-intelligence dashboard with four machine-learning modules. Each form sends validated input to FastAPI and returns a prediction, status level, and recommendation.
