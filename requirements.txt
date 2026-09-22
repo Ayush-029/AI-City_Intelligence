@@ -1,0 +1,17 @@
+numpy
+streamlit>=1.42,<2
+pandas
+matplotlib
+seaborn
+scikit-learn
+jupyter
+openpyxl
+xgboost
+joblib
+fastapi
+uvicorn
+pydantic
+python-dotenv
+requests
+pytest
+httpx

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI City Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">AI</div>
+
+                <div>
+                    <h2>CityMind</h2>
+                    <span>Intelligence Platform</span>
+                </div>
+            </div>
+
+            <nav>
+
+                <p class="nav-title">MAIN</p>
+
+                <a href="#" class="nav-item active">
+                    <span>📊</span>
+                    Dashboard
+                </a>
+
+                <a href="#traffic-intelligence" class="nav-item">
+                    <span>🚦</span>
+                    Traffic
+                </a>
+
+                <a href="#air-quality" class="nav-item">
+                    <span>🌫️</span>
+                    Pollution
+                </a>
+
+                <a href="#waste-management" class="nav-item">
+                    <span>♻️</span>
+                    Waste
+                </a>
+
+                <a href="#transport-intelligence" class="nav-item">
+                    <span>🚌</span>
+                    Transport
+                </a>
+
+                <p class="nav-title">SYSTEM</p>
+
+                <a href="#" class="nav-item">
+                    <span>🤖</span>
+                    AI Insights
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>⚙️</span>
+                    Settings
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="api-status">
+                    <span id="apiStatusDot" class="status-dot"></span>
+
+                    <div>
+                        <strong id="apiStatusText">Checking API...</strong>
+                        <small id="apiStatusDetail">City Intelligence API</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <h1>Traffic Intelligence</h1>
+                    <p>AI-powered urban traffic monitoring & prediction</p>
+                </div>
+
+                <div class="top-actions">
+
+                    <div class="live-status">
+                        <span></span>
+                        Live
+                    </div>
+
+                    <button class="icon-btn">🔔</button>
+
+                    <div class="profile">
+                        <div class="avatar">AK</div>
+
+                        <div>
+                            <strong>Admin</strong>
+                            <small>City Analyst</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- KPI CARDS -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Predicted Traffic</span>
+                        <div class="stat-icon">🚗</div>
+                    </div>
+
+                    <h2 id="traffic">--</h2>
+
+                    <div class="stat-bottom">
+                        <span>vehicles/hour</span>
+                        <span class="trend">AI Prediction</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Congestion Level</span>
+                        <div class="stat-icon">🚦</div>
+                    </div>
+
+                    <h2 id="congestion">--</h2>
+
+                    <div class="stat-bottom">
+                        <span>Current prediction</span>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Risk Score</span>
+                        <div class="stat-icon">⚠️</div>
+                    </div>
+
+                    <h2 id="risk">--</h2>
+
+                    <div class="risk-bar">
+                        <div id="riskBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Time Period</span>
+                        <div class="stat-icon">🕒</div>
+                    </div>
+
+                    <h2 id="period">--</h2>
+
+                    <div class="stat-bottom">
+                        <span>Prediction window</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTENT GRID -->
+            <section id="traffic-intelligence" class="content-grid">
+
+
+                <!-- PREDICTION PANEL -->
+                <div class="panel prediction-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Traffic Prediction</h2>
+                            <p>Enter environmental and time conditions</p>
+                        </div>
+
+                        <span class="ai-badge">
+                            ✨ XGBoost AI
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label>Temperature</label>
+                            <input id="temp" type="number" placeholder="e.g. 288">
+                            <small>Kelvin</small>
+                        </div>
+
+                        <div class="field">
+                            <label>Rainfall</label>
+                            <input id="rain" type="number" step="0.1" placeholder="e.g. 0">
+                            <small>mm / hour</small>
+                        </div>
+
+                        <div class="field">
+                            <label>Snowfall</label>
+                            <input id="snow" type="number" step="0.1" placeholder="e.g. 0">
+                            <small>mm / hour</small>
+                        </div>
+
+                        <div class="field">
+                            <label>Cloud Cover</label>
+                            <input id="clouds" type="number" min="0" max="100" placeholder="0 - 100">
+                            <small>Percentage</small>
+                        </div>
+
+                        <div class="field">
+                            <label>Hour</label>
+                            <input id="hour" type="number" min="0" max="23" placeholder="0 - 23">
+                            <small>24-hour format</small>
+                        </div>
+
+                        <div class="field">
+                            <label>Day of Week</label>
+                            <select id="day">
+                                <option value="">Select day</option>
+                                <option value="0">Monday</option>
+                                <option value="1">Tuesday</option>
+                                <option value="2">Wednesday</option>
+                                <option value="3">Thursday</option>
+                                <option value="4">Friday</option>
+                                <option value="5">Saturday</option>
+                                <option value="6">Sunday</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>Month</label>
+                            <select id="month">
+                                <option value="">Select month</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>Weekend</label>
+                            <select id="weekend">
+                                <option value="">Select</option>
+                                <option value="0">Weekday</option>
+                                <option value="1">Weekend</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <button class="predict-btn" onclick="predictTraffic()">
+
+                        <span>🔮</span>
+
+                        <span id="btnText">
+                            Predict Traffic
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- AI INSIGHT -->
+                <div class="panel insight-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>AI Recommendation</h2>
+                            <p>Intelligent traffic analysis</p>
+                        </div>
+
+                        <div class="robot">🤖</div>
+
+                    </div>
+
+
+                    <div class="insight-content">
+
+                        <div class="insight-icon">
+                            🧠
+                        </div>
+
+                        <p id="recommendation">
+                            Enter traffic conditions and run
+                            the prediction model to receive
+                            an AI-powered recommendation.
+                        </p>
+
+                    </div>
+
+
+                    <div class="prediction-info">
+
+                        <div>
+                            <span>Model</span>
+                            <strong>XGBoost</strong>
+                        </div>
+
+                        <div>
+                            <span>Target</span>
+                            <strong>Traffic Volume</strong>
+                        </div>
+
+                        <div>
+                            <span>Mode</span>
+                            <strong>Regression</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ANALYTICS -->
+            <section class="panel analytics-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Traffic Analytics</h2>
+                        <p>Traffic intelligence overview</p>
+                    </div>
+
+                    <select class="chart-filter">
+                        <option>Today</option>
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                    </select>
+
+                </div>
+
+
+                <div class="chart-placeholder">
+
+                    <div class="chart-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="chart-message">
+                        <div>📈</div>
+                        <strong>Traffic Analytics</strong>
+                        <p>Historical traffic visualization will appear here.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AIR QUALITY PREDICTION -->
+            <section id="air-quality" class="panel prediction-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Air Quality Prediction</h2>
+                        <p>Predict AQI from city, pollutants, and time</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label>City</label>
+                        <select id="aqiCity">
+                            <option value="">Select city</option>
+                            <option>Bangalore</option>
+                            <option>Chennai</option>
+                            <option>Delhi</option>
+                            <option>Kolkata</option>
+                            <option>Mumbai</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Date and Time</label>
+                        <input id="aqiDatetime" type="datetime-local">
+                    </div>
+
+                    <div class="field"><label>PM2.5</label><input id="pm25" type="number" min="0"></div>
+                    <div class="field"><label>PM10</label><input id="pm10" type="number" min="0"></div>
+                    <div class="field"><label>NO</label><input id="no" type="number" min="0"></div>
+                    <div class="field"><label>NO2</label><input id="no2" type="number" min="0"></div>
+                    <div class="field"><label>NOx</label><input id="nox" type="number" min="0"></div>
+                    <div class="field"><label>NH3</label><input id="nh3" type="number" min="0"></div>
+                    <div class="field"><label>CO</label><input id="co" type="number" min="0" step="0.1"></div>
+                    <div class="field"><label>SO2</label><input id="so2" type="number" min="0"></div>
+                    <div class="field"><label>O3</label><input id="o3" type="number" min="0"></div>
+                </div>
+
+                <button id="aqiPredictButton" class="predict-btn" onclick="predictAQI()">Predict Air Quality</button>
+                <div id="aqiResult" class="prediction-result">
+    Enter values to predict AQI.
+</div>
+            </section>
+
+
+            <!-- WASTE MANAGEMENT PREDICTION -->
+            <section id="waste-management" class="panel prediction-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Waste Management Prediction</h2>
+                        <p>Estimate daily waste and collection priority</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field"><label>City</label><input id="wasteCity" placeholder="e.g. Mumbai"></div>
+                    <div class="field">
+                        <label>Waste Type</label>
+                        <select id="wasteType">
+                            <option value="">Select type</option>
+                            <option>Organic</option><option>Plastic</option><option>E-Waste</option>
+                            <option>Construction</option><option>Hazardous</option>
+                        </select>
+                    </div>
+                    <div class="field"><label>Recycling Rate (%)</label><input id="recyclingRate" type="number" min="0" max="100"></div>
+                    <div class="field"><label>Population Density</label><input id="populationDensity" type="number" min="0"></div>
+                    <div class="field"><label>Municipal Efficiency (1-10)</label><input id="municipalEfficiency" type="number" min="1" max="10"></div>
+                    <div class="field">
+                        <label>Disposal Method</label>
+                        <select id="disposalMethod">
+                            <option value="">Select method</option>
+                            <option>Composting</option><option>Recycling</option><option>Landfill</option><option>Incineration</option>
+                        </select>
+                    </div>
+                    <div class="field"><label>Awareness Campaigns</label><input id="campaignCount" type="number" min="0"></div>
+                    <div class="field"><label>Landfill Capacity (tons)</label><input id="landfillCapacity" type="number" min="0"></div>
+                    <div class="field"><label>Waste Reduction Initiatives</label><input id="wasteInitiatives" type="number" min="0" step="0.1"></div>
+                    <div class="field"><label>Industrial Symbiosis Index</label><input id="industrialIndex" type="number" min="0" step="0.1"></div>
+                    <div class="field"><label>Community Participation Score</label><input id="communityScore" type="number" min="0" step="0.1"></div>
+                    <div class="field"><label>Green Technology Adoption</label><input id="greenTechnology" type="number" min="0" step="0.1"></div>
+                    <div class="field"><label>Recycling Infrastructure Rating</label><input id="infrastructureRating" type="number" min="0" step="0.1"></div>
+                </div>
+
+                <button id="wastePredictButton" class="predict-btn" onclick="predictWaste()">Predict Waste Management</button>
+                <div id="wasteResult" class="prediction-result">Enter waste-management details to receive a prediction.</div>
+            </section>
+
+            <!-- TRANSPORT DEMAND PREDICTION -->
+            <section id="transport-intelligence" class="panel prediction-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Transport Demand Prediction</h2>
+                        <p>Estimate passenger demand and crowd level</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field"><label>City</label><input id="transportCity" placeholder="e.g. Agra"></div>
+                    <div class="field"><label>Year</label><input id="transportYear" type="number" min="2015" max="2030" placeholder="e.g. 2015"></div>
+                    <div class="field"><label>Daily Trips</label><input id="dailyTrips" type="number" min="1" placeholder="e.g. 245"></div>
+                    <div class="field"><label>Daily Trip Length (km)</label><input id="tripLength" type="number" min="1" placeholder="e.g. 16546"></div>
+                    <div class="field"><label>Total Buses</label><input id="totalBuses" type="number" min="1" placeholder="e.g. 170"></div>
+                    <div class="field"><label>Bus Terminals</label><input id="busTerminals" type="number" min="0" placeholder="e.g. 20"></div>
+                    <div class="field"><label>Bus Stands</label><input id="busStands" type="number" min="0" placeholder="e.g. 5"></div>
+                    <div class="field"><label>Bus Stops</label><input id="busStops" type="number" min="0" placeholder="e.g. 30"></div>
+                </div>
+
+                <button id="transportPredictButton" class="predict-btn" onclick="predictTransport()">Predict Transport Demand</button>
+                <div id="transportResult" class="prediction-result">Enter transport details to receive a prediction.</div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer>
+
+                <span>AI City Intelligence Platform</span>
+
+                <span>
+                    Traffic Intelligence • XGBoost • FastAPI
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
